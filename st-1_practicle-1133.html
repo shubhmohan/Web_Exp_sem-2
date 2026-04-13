@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Logic</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .result-box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .even { color: green; font-weight: bold; }
+        .odd { color: orange; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Number Checker & Looper</h2>
+    
+    <input type="number" id="userInput" placeholder="Enter a number">
+    <button onclick="processNumber()">Submit</button>
+
+    <div id="output" class="result-box" style="display:none;">
+        <p id="parityResult"></p>
+        <p><strong>Sequence:</strong></p>
+        <p id="loopResult"></p>
+    </div>
+
+    <script>
+        function processNumber() {
+            const num = parseInt(document.getElementById('userInput').value);
+            const outputDiv = document.getElementById('output');
+            const parityPara = document.getElementById('parityResult');
+            const loopPara = document.getElementById('loopResult');
+
+            if (isNaN(num)) {
+                alert("Please enter a valid number");
+                return;
+            }
+
+            outputDiv.style.display = "block";
+
+            // 1. Conditional: Check Even or Odd
+            if (num % 2 === 0) {
+                parityPara.innerHTML = `The number ${num} is <span class="even">Even</span>.`;
+            } else {
+                parityPara.innerHTML = `The number ${num} is <span class="odd">Odd</span>.`;
+            }
+
+            // 2. Loop: Print 1 to N
+            let sequence = "";
+            for (let i = 1; i <= num; i++) {
+                sequence += i + (i === num ? "" : ", ");
+            }
+            loopPara.innerText = sequence;
+        }
+    </script>
+
+</body>
+</html>
