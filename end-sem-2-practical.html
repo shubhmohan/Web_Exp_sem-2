@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Vowel or Consonant Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Vowel or Consonant Checker</h2>
+    <label for="charInput">Type a letter:</label>
+    <input type="text" id="charInput" maxlength="1" placeholder="e.g., a, B, z" oninput="checkLetter()">
+
+    <div id="result">Enter a letter to see the result.</div>
+</div>
+
+<script>
+function checkLetter() {
+    // 1. Get the input value and convert it to lowercase for easier comparison
+    const input = document.getElementById('charInput').value.toLowerCase();
+    const resultDiv = document.getElementById('result');
+
+    // 2. If the input is empty, clear the result message
+    if (input === "") {
+        resultDiv.textContent = "Enter a letter to see the result.";
+        return;
+    }
+
+    // 3. Check if the input is actually a letter (a-z) using a Regular Expression
+    if (input.match(/[a-z]/)) {
+        
+        // 4. Core If-Else Logic to check for vowels
+        if (input === 'a' || input === 'e' || input === 'i' || input === 'o' || input === 'u') {
+            resultDiv.innerHTML = `The letter <span style="color: #2ecc71;">"${input.toUpperCase()}"</span> is a <strong>Vowel</strong>.`;
+        } else {
+            resultDiv.innerHTML = `The letter <span style="color: #e74c3c;">"${input.toUpperCase()}"</span> is a <strong>Consonant</strong>.`;
+        }
+
+    } else {
+        // Handle numbers, symbols, or special characters
+        resultDiv.innerHTML = `<span style="color: #7f8c8d;">"${input}"</span> is not a valid letter.`;
+    }
+}
+</script>
+
+</body>
+</html>
